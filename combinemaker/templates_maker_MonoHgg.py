@@ -1,4 +1,4 @@
-If you go at the end of this code you will find the following lines :
+If you go to the end of this code you will find the following lines :
 
 # actual main
 if __name__ == "__main__":
