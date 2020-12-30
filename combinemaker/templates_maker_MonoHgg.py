@@ -5,8 +5,8 @@ if __name__ == "__main__":
     app = TemplatesApp()
     app.run()
     
- if __name__ == "__main__":   This means if this is the module being called then this part will work, if this module is being imported in some other module then 
-__name__ is not __main__ anymore, as in that case __name__ will be "templates_maker_MonoHgg" as we all know
+ if __name__ == "__main__":   This means if this is the module being called then this part will work, if this module is being imported in some other module,
+ then __name__ is not __main__ anymore, as in that case __name__ will be "templates_maker_MonoHgg" as we all know
 
 Now, as we can see, app is an oject of class TemplatesApp, which is inherited from plotApp
 Then, app.run()
