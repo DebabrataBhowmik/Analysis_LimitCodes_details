@@ -25,5 +25,39 @@ Then you will find the method run(), which is the following
 
 which basically is calling the __call__() method of the class object
 
-So, one should look into the __call__() method of the class TemplatesApp
+So, one should look into the __call__() method of the class TemplatesApp, which is the following :
 
+    def __call__(self,options,args):
+        """
+        Main method. Called automatically by PyRoot class.
+        """
+        ## load ROOT style
+        self.loadRootStyle()
+        from ROOT import RooFit
+        ROOT.gStyle.SetOptStat(111111)
+	printLevel = ROOT.RooMsgService.instance().globalKillBelow()
+        ROOT.RooMsgService.instance().setGlobalKillBelow(RooFit.FATAL)
+
+	self.setup(options,args)
+
+        if options.mix_templates:
+            if options.verbose:
+		print "calling mix templates"
+            self.mixTemplates(options,args)
+
+So the main two method to look into is :
+setup() &
+mixTemplates()
+
+Need to look at "setu()" method and
+
+mixTemplates() is again defined as :
+
+    def mixTemplates(self,options,args):
+        fout = self.openOut(options)
+        ## fout.Print()
+        fout.cd()
+        self.doMixTemplates(options,args)
+        self.saveWs(options,fout)
+
+So, one should look into the "doMixTemplates()" method.
