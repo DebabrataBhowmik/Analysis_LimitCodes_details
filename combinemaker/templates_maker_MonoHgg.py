@@ -14,7 +14,9 @@ Actually if you try to find out run() method, there is none in this module, but
 in the very first line you will find 
 from diphotons.Utils.pyrapp import *
 
-Now if you go to ../../../../Utils/python/pyrapp      i.e. /afs/cern.ch/work/d/dbhowmik/public/Analysis/MHgg/2017Analysis/Fit_DiPhotonTools/CMSSW_9_4_9/src/diphotons/Utils/python/pyrapp
+Now if you go to ../../../../Utils/python/pyrapp      
+i.e. /afs/cern.ch/work/d/dbhowmik/public/Analysis/MHgg/2017Analysis/Fit_DiPhotonTools/CMSSW_9_4_9/src/diphotons/Utils/python/pyrapp
+
 And look into pyrapp.py
 Then you will find the method run(), which is the following 
 
