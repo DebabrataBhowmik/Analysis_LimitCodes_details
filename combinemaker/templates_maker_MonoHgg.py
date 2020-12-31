@@ -71,4 +71,38 @@ for name, mix in options.mix.iteritems():
         if not options.mix_mc and name.startswith("kDSinglePho2DMC"): continue
 
 mix="", neither anything starts with "kDSinglePho2DMC", so basically, "doMixTemplates()" method is not being used,
-and looking at only "setu()" method is enough.
+and looking at only "setup()" method is enough.
+
+Let's  focus on "setup()" method.
+The first part in the method reads:
+
+	if len(options.only_subset)>0:
+	    print "inside only_subset "
+            subset = {}
+            print "Taking fit names from templates_maker_prepare_MonoHgg.json"
+            for name,fit in options.fits.iteritems():
+                print "name in fits = ", name
+                if not name in options.only_subset:
+                    continue
+                subset[name] = fit
+            options.fits = subset
+        print "after only_subset if condition"
+			
+In the "combine_maker_MonoHgg.sh" where this templatemaker is being called, 
+
+    ./templates_maker_MonoHgg.py --load templates_maker_MonoHgg.json,templates_maker_prepare_MonoHgg.json $load_also --only-subset $subset $mix --input-dir $treesdir/$input_folder $prepare -o $input $ver\
+bose $input_opts 2>&1 | tee $input_log
+
+only-subset =subset=fitname="cic"  (--fitname="cic" given in the arguements while running "combine_maker_MonoHgg.sh")
+
+So ultimately, 
+subset={cic}
+options.fits=subset
+
+Then none of the if statesments is valid until it reaches:
+
+elif not options.skip_templates:
+            print "Everything is happening here using self.prepareTemplates"
+            self.prepareTemplates(options,args)
+	
+So, the main part of the code is in "prepareTemplates()" method
