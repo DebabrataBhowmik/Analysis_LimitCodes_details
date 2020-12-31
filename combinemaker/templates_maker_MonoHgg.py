@@ -63,3 +63,12 @@ mixTemplates() is again defined as :
         self.saveWs(options,fout)
 
 So, one should look into the "doMixTemplates()" method.
+
+Now, in "doMixTemplates()" method, it starts with 
+
+for name, mix in options.mix.iteritems():
+	if name.startswith("_"): continue
+        if not options.mix_mc and name.startswith("kDSinglePho2DMC"): continue
+
+mix="", neither anything starts with "kDSinglePho2DMC", so basically, "doMixTemplates()" method is not being used,
+and looking at only "setu()" method is enough.
